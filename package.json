@@ -1,0 +1,43 @@
+{
+  "name": "@stefanprobst/remark-resource-links",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "format": "prettier . -l --ignore-path .gitignore",
+    "format:fix": "yarn run format --write",
+    "prepare": "simple-git-hooks",
+    "test": "jest"
+  },
+  "engines": {
+    "yarn": "1.x"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "@stefanprobst/commitlint-config": "^1.0.1",
+    "@stefanprobst/prettier-config": "^1.0.3",
+    "husky": "^6.0.0",
+    "jest": "^27.0.4",
+    "prettier": "^2.3.1",
+    "remark": "^12.0.0",
+    "simple-git-hooks": "^2.4.1"
+  },
+  "peerDependencies": {
+    "remark-stringify": "<=8"
+  },
+  "commitlint": {
+    "extends": "@stefanprobst/commitlint-config"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write"
+    ]
+  },
+  "prettier": "@stefanprobst/prettier-config",
+  "simple-git-hooks": {
+    "commit-msg": "yarn commitlint --edit",
+    "pre-commit": "yarn lint-staged",
+    "pre-push": "yarn run test"
+  }
+}
